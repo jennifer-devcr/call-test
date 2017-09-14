@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<title>TEST API CALL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>	
+</header>
+<body>
+	<main class="container" style="padding-top:30px;padding-bottom:30px;">
+		<div class="row">
+			<div class="col-md-3">
+				<br><br>
+				<button class="btn btn-default call-btn">MAKE CALL</button>
+			</div>
+			
+			<div class="col-md-9">
+				<div class="row">
+					<h3 class="col-md-2">URL:</h3>
+					<pre class="col-md-10 url"></pre>
+				</div>
+				<div class="row">
+					<h3 class="col-md-2">Response:</h3>
+					<pre class="col-md-10 result"></pre>
+				</div>
+			</div>
+			
+		</div>		
+	</main>
+	
+	<script type="text/javascript">
+		var url = 'http://qa1.rha.intertecintl.com/api/v1/tasks';
+		var dataPOST = {};
+		var headers = {
+			'x-api-key': 'asd'
+		};
+	
+		$('.call-btn').click(function() {
+			$.ajax({
+			  url: url,
+			  method: 'GET',
+			  cache: false,
+			  contentType: 'application/json',
+			  crossDomain : true,
+			  data: dataPOST,
+			  headers: headers,
+			  success: function( result ) {
+				$( '.url' ).html( url );
+				$( '.result' ).html( JSON.stringify(result, undefined, 4) );
+			  },
+			  error: function( error ) {
+				$( '.url' ).html( url );
+				$( '.result' ).html( JSON.stringify(error, undefined, 4) );
+			  }
+			});
+		});		
+	</script>
+</body>
+</html>
